@@ -1,0 +1,67 @@
+.main-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.posts-main-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.each-post-content-wrapper {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background-color: gray;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.each-post-content-header {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.submit-button {
+  width: 200px;
+  height: 50px;
+  background-color: #ccc;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+}
+
+.each-post-actions-wrapper {
+  width: 200px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.each-post-delete-post-button, .each-post-edit-post-button {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.each-post-delete-post-button-img, .each-post-edit-post-button-img {
+  width: 30px;
+  height: 30px;
+}
