@@ -10,7 +10,7 @@
     $author = $data["author"];
 
     // Call the createPost function
-    $response_body = createPost($title, $body, $author);
+    $response_body = create_post($title, $body, $author);
 
     echo json_encode([
         "success" => $response_body["success"],

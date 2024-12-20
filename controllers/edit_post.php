@@ -13,7 +13,7 @@
     $newBody = $data["body"];
     $newAuthor = $data["author"];
 
-    $response_body = editPost($id, $newTitle, $newBody, $newAuthor);
+    $response_body = edit_post($id, $newTitle, $newBody, $newAuthor);
 
     echo json_encode($response_body);
   } catch (Error $err) {

@@ -8,8 +8,8 @@
 
   try {
   
-    $prompt = $data["promp"];
-    $answer = sendAnthropicRequest($prompt);
+    $prompt = $data["prompt"];
+    $answer = send_antrophic_request($prompt);
 
     echo json_encode(["success" => false, "answer" => $answer]);
   } catch (Error $err) {

@@ -1,6 +1,6 @@
 <?php
 
-function sendAnthropicRequest($prompt) {
+function send_antrophic_request($prompt) {
 
     $env = parse_ini_file('.env');
 
@@ -57,6 +57,6 @@ function sendAnthropicRequest($prompt) {
 
 // Example usage
 $prompt = "Hey Claude, tell me a short fun fact about video games!";
-$response = sendAnthropicRequest($prompt);
+$response = send_antrophic_request($prompt);
 print_r($response);
 ?>

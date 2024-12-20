@@ -9,7 +9,7 @@
     
     $id = $data["id"];
 
-    $response_body = deletePost($id);
+    $response_body = delete_post($id);
     echo json_encode($response_body);
   } catch (Error $error) {
     echo json_encode(["success" => false, "err" => "Unknown error."]);

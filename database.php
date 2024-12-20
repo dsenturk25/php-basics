@@ -24,13 +24,31 @@
   //   echo $row["title"] . "<br/>";
   // }
 
-  function getAllPosts () {
+  function get_response_body ($success_status, $response_data, $error_code = 3) {
+
+    if ($error_code < 0 || $error_code > 3 || gettype($error_code) != "integer") $error_code = 3;
+
+    $error_messages = array(
+      0 => false,
+      1 => "Upload failure",
+      2 => "Not found",
+      3 => "Other error"
+    );
+
+    return (object) array(
+      "success" => $success_status, 
+      "response_data" => $response_data,
+      "err" => $error_messages[$error_code]
+    );
+  }
+
+  function get_all_posts () {
     $stmt = $GLOBALS["pdo"]->query("SELECT * from posts");
     $posts = $stmt->fetchAll();
     return $posts;
   }  
 
-  function createPost ($title, $body, $author) {
+  function create_post ($title, $body, $author) {
     
     global $pdo;
 
@@ -52,7 +70,7 @@
   }
 
 
-  function deletePost ($id) {
+  function delete_post ($id) {
     global $pdo;
 
     $find_sql = "SELECT title FROM posts WHERE id = ?";
@@ -71,7 +89,7 @@
     }
   }
 
-  function editPost ($id, $newTitle, $newBody, $newAuthor) {
+  function edit_post ($id, $newTitle, $newBody, $newAuthor) {
 
     global $pdo;
 
@@ -89,6 +107,28 @@
       return ["success" => true, "err" => false];
     } catch (PDOException $err) {
       return ["success" => false, "err" => $err];
+    }
+  }
+
+  function filter_sort_posts ($sort_attribute, $sort_order, $search_attribute, $search_query) {
+
+    global $pdo;
+
+    $filter_query = "SELECT * FROM posts
+      WHERE ? LIKE '%?%'
+      ORDER BY ? ?
+    ";
+
+    try {
+
+      $filter_stmt = $pdo->prepare($filter_query);
+      $filter_stmt->execute([$search_attribute, $search_query, $sort_attribute, $sort_order]);
+      $res_array = $filter_stmt->fetchAll();
+
+      return get_response_body(true, $res_array, 0);
+
+    } catch (Error $err) { 
+      return get_response_body(false, 3);
     }
   }
 
